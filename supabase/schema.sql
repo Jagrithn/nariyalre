@@ -206,3 +206,70 @@ alter table public.pickup_live_locations enable row level security;
 
 create policy "pickup_live_locations_all_authenticated" on public.pickup_live_locations
   for all to authenticated using (true) with check (true);
+
+alter table public.profiles drop constraint if exists "profiles_role_check";
+alter table public.profiles add constraint profiles_role_check
+  check (role in ('generator', 'collector', 'depot', 'admin', 'consumer'));
+
+create table if not exists public.products (
+  id text primary key,
+  name text not null,
+  material_type text not null check (material_type in ('fiber', 'shells', 'pith', 'cocopeat', 'compost')),
+  price numeric(10, 2) not null check (price >= 0),
+  unit text not null,
+  description text not null default '',
+  made_by text not null default '',
+  stock integer not null default 10 check (stock >= 0),
+  recycler_kg numeric(6, 2) not null default 1 check (recycler_kg >= 0),
+  accent text not null default 'emerald' check (accent in ('emerald', 'teal', 'amber', 'lime'))
+);
+
+create table if not exists public.vending_machines (
+  id text primary key,
+  name text not null,
+  address text not null default '',
+  lat double precision not null,
+  lng double precision not null,
+  fill_level integer not null default 0 check (fill_level between 0 and 100),
+  payout_per_kg numeric(8, 2) not null default 6 check (payout_per_kg >= 0),
+  accepts text[]
+);
+
+create table if not exists public.orders (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users (id) on delete cascade,
+  items jsonb not null default '[]',
+  total numeric(10, 2) not null check (total >= 0),
+  kg_diverted numeric(8, 2) not null default 0,
+  status text not null default 'placed'
+    check (status in ('placed', 'processing', 'shipped', 'delivered')),
+  address text,
+  created_at timestamptz not null default now()
+);
+
+alter table public.products enable row level security;
+alter table public.vending_machines enable row level security;
+alter table public.orders enable row level security;
+
+create policy "products_read_public" on public.products
+  for select to anon, authenticated using (true);
+
+create policy "products_all_authenticated" on public.products
+  for all to authenticated using (true) with check (true);
+
+create policy "machines_read_public" on public.vending_machines
+  for select to anon, authenticated using (true);
+
+create policy "machines_all_authenticated" on public.vending_machines
+  for all to authenticated using (true) with check (true);
+
+create policy "orders_select_own" on public.orders
+  for select to authenticated using (auth.uid() = user_id);
+
+create policy "orders_insert_own" on public.orders
+  for insert to authenticated with check (auth.uid() = user_id);
+
+create policy "orders_update_own" on public.orders
+  for update to authenticated using (auth.uid() = user_id);
+
+create index if not exists orders_user_created_idx on public.orders (user_id, created_at desc);

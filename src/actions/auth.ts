@@ -30,6 +30,7 @@ function roleForPhone(phone: string): UserRole {
   if (/001[12]$/.test(phone)) return "collector"
   if (/0021$/.test(phone)) return "depot"
   if (/0031$/.test(phone)) return "admin"
+  if (/0041$/.test(phone)) return "consumer"
   return "generator"
 }
 
@@ -94,4 +95,36 @@ export async function signOutAction(): Promise<void> {
   if (!isSupabaseConfigured()) return
   const supabase = await createClient()
   await supabase.auth.signOut()
+}
+
+export async function createAccountAction(input: {
+  name: string
+  phone: string
+  role: UserRole
+}): Promise<{ ok: boolean; user?: OtpUser; mock?: boolean; error?: string }> {
+  const normalized = normalizePhone(input.phone)
+  if (!isSupabaseConfigured()) {
+    return {
+      ok: true,
+      mock: true,
+      user: {
+        id: `u_${input.role}_${Date.now().toString(36)}`,
+        role: input.role,
+        fullName: input.name.trim(),
+        phone: normalized,
+      },
+      error: undefined,
+    }
+  }
+
+  const supabase = await createClient()
+  const { error } = await supabase.auth.signInWithOtp({
+    phone: normalized,
+    options: {
+      data: { full_name: input.name.trim(), role: input.role },
+      shouldCreateUser: true,
+    },
+  })
+  if (error) return { ok: false, error: error.message }
+  return { ok: true, mock: false }
 }

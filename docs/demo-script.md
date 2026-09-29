@@ -10,7 +10,7 @@ Timed, judge-ready walkthrough. Everything below runs **out of the box** in mock
 
 > "Chennai produces tonnes of coconut waste a day from temples, markets and stalls. It goes to landfill and smoulders. The collectors who move it are informal — no routing, no fair pay, no proof of impact. Coco turns that waste into a tracked, priced, circular supply chain."
 
-**Show** the landing page (`/`). Point out: generator → collector → depot → distribution.
+**Show** the landing page (`/`). Tap through the **impact counters**, the **how-it-works** circle, the **women-led making** section, the **products showcase**, and the **deposit calculator**. Point out: generator → collector → depot → distribution → shop & earn.
 
 ---
 
@@ -47,7 +47,19 @@ Timed, judge-ready walkthrough. Everything below runs **out of the box** in mock
 
 ---
 
-## 3:45 — Admin (45 seconds)
+## 3:30 — Consumer marketplace & vending machines (75 seconds)
+
+1. From `/login`, tap **"Create an account"** → role **Consumer** → any name + `+919740000041`, OTP `420420`. (Or tap the "Consumer · Eco shopper" chip.)
+2. **Shop** (`/consumer`): browse coconut-made products — planter pots, doormats, cocopeat blocks. Add a couple to the basket.
+3. Open **View basket** → adjust quantities, add a delivery note, tap **"Place order (demo checkout)"** → order lands in **Orders** with a *placed → delivered* timeline and "diverted X kg".
+4. **Machines** (`/consumer/machines`): slide the **deposit calculator** (0.5–5 kg) to show instant payout; flip to **Map** to see the 6 vending machines + nearest route.
+5. Show role gating: as a consumer you *never* see collector or admin screens.
+
+> Line: *"The same loop pays everyone — drop waste in a machine, buy what the waste becomes."*
+
+---
+
+## 4:45 — Admin (45 seconds)
 
 1. Navigate to `/login`, sign in as `+919740000031` (tap "Ops admin", OTP `420420`) → **Dashboard** (`/admin`): daily throughput, tier split, yield breakdown (fiber/shells/pith/cocopeat), cocopeat blocks.
 2. **Depot** (`/admin/depot`): weigh-in a batch.
@@ -57,7 +69,7 @@ Timed, judge-ready walkthrough. Everything below runs **out of the box** in mock
 
 ---
 
-## 4:30 — Economics & close (30 seconds)
+## 5:30 — Economics & close (30 seconds)
 
 > "The numbers add up:
 > collector paid ₹2.5/kg at the depot;
@@ -79,3 +91,4 @@ Final line: **"Waste that works."**
 | Auth? | OTP login, demo code `420420`; Supabase phone auth (OTP/SMS) when live. |
 | Offline? | Pickups queue in persisted stores (`coco-generator-pickups` etc.) and reconcile when online. |
 | Routing? | OSRM driving directions with a direct-line fallback offline. |
+| Vending machines real? | Simulated with mock machines + payout data for the demo; the schema/seed includes `vending_machines` so real devices can be plugged in. |

@@ -1,4 +1,4 @@
-export type UserRole = "generator" | "collector" | "depot" | "admin"
+export type UserRole = "generator" | "collector" | "depot" | "admin" | "consumer"
 
 export interface User {
   id: string
@@ -106,4 +106,55 @@ export interface LiveLocation {
   lat: number
   lng: number
   updated_at: string
+}
+
+export type ProductAccent = "emerald" | "amber" | "teal" | "lime"
+
+export interface Product {
+  id: string
+  name: string
+  material_type: MaterialType
+  price: number
+  unit: string
+  description: string
+  made_by: string
+  stock: number
+  recycler_kg: number
+  accent: ProductAccent
+}
+
+export interface CartItem {
+  productId: string
+  qty: number
+}
+
+export type OrderStatus = "placed" | "processing" | "shipped" | "delivered"
+
+export interface OrderItem {
+  productId: string
+  name: string
+  qty: number
+  price: number
+}
+
+export interface Order {
+  id: string
+  user_id: string
+  items: OrderItem[]
+  total: number
+  kg_diverted: number
+  status: OrderStatus
+  created_at: string
+  address?: string
+}
+
+export interface VendingMachine {
+  id: string
+  name: string
+  address: string
+  lat: number
+  lng: number
+  fill_level: number
+  payout_per_kg: number
+  accepts: MaterialType[]
 }

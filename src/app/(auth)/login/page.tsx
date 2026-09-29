@@ -10,9 +10,11 @@ import {
   verifyOtpAction,
   type OtpUser,
 } from "@/actions/auth"
+import { CreateAccountForm } from "@/components/features/auth/create-account-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { HOME_FOR } from "@/lib/homeFor"
 import { useSessionStore } from "@/lib/stores/session"
 import type { UserRole } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -22,19 +24,14 @@ const DEMO_ACCOUNTS: { phone: string; role: UserRole; label: string }[] = [
   { phone: "+919740000011", role: "collector", label: "Collector · Ravi" },
   { phone: "+919740000021", role: "depot", label: "Depot weighbridge" },
   { phone: "+919740000031", role: "admin", label: "Ops admin" },
+  { phone: "+919740000041", role: "consumer", label: "Consumer · Eco shopper" },
 ]
-
-const HOME_FOR: Record<UserRole, string> = {
-  generator: "/generator",
-  collector: "/collector",
-  depot: "/admin/depot",
-  admin: "/admin",
-}
 
 export default function LoginPage() {
   const router = useRouter()
   const setUser = useSessionStore((s) => s.setUser)
 
+  const [mode, setMode] = useState<"signin" | "signup">("signin")
   const [step, setStep] = useState<"phone" | "otp">("phone")
   const [phone, setPhone] = useState("")
   const [code, setCode] = useState("")
@@ -106,7 +103,9 @@ export default function LoginPage() {
         </div>
 
         <div className="rounded-3xl border bg-card p-6 shadow-sm">
-          {step === "phone" ? (
+          {mode === "signup" ? (
+            <CreateAccountForm onBack={() => setMode("signin")} />
+          ) : step === "phone" ? (
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <Label htmlFor="phone">Mobile number</Label>
@@ -216,6 +215,19 @@ export default function LoginPage() {
             </div>
           )}
         </div>
+
+        {mode === "signin" && (
+          <p className="mt-5 text-center text-xs">
+            <span className="text-muted-foreground">New here? </span>
+            <button
+              type="button"
+              onClick={() => setMode("signup")}
+              className="font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
+            >
+              Create an account
+            </button>
+          </p>
+        )}
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           <Link href="/" className="flex items-center justify-center gap-1 hover:text-foreground">

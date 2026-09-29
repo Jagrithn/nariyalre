@@ -1,8 +1,8 @@
 # Coco — Waste that works
 
-**Coco** (short for coconut) turns coconut waste into a tracked, priced, circular supply chain. Temples, markets and fruit stalls schedule pickups with one tap; collectors get routed jobs and earn per kilo; a depot turns shells into fiber, pith and cocopeat; and everything is tracked from the vendor to a B2B buyer.
+**Coco** (short for coconut) turns coconut waste into a tracked, priced, circular supply chain. Temples, markets and fruit stalls schedule pickups with one tap; collectors get routed jobs and earn per kilo; a depot turns shells into fiber, pith and cocopeat; and a consumer **marketplace** sells what the loop makes — while smart vending machines pay ordinary people to drop waste back in. Everything is tracked from the vendor to a B2B buyer.
 
-It's an **offline-first PWA** that runs out of the box — no accounts, no API keys, no setup. Just run it and demo the whole city logistics graph with four roles.
+It's an **offline-first PWA** that runs out of the box — no accounts, no API keys, no setup. Just run it and demo the whole city logistics graph with five roles.
 
 ---
 
@@ -49,6 +49,7 @@ Then sign in with any demo account. The mock OTP is always **420420**.
 | **Collector · Ravi** | `+919740000011` | Job map, routed trips, UPI earnings |
 | **Depot weighbridge** | `+919740000021` | Depot weigh-in & batches |
 | **Ops admin** | `+919740000031` | Analytics, distribution |
+| **Consumer · Eco shopper** | `+919740000041` | Marketplace, vending machines |
 
 Want a guided walkthrough? See [`docs/demo-script.md`](./docs/demo-script.md) for a judge-ready 5-minute pitch.
 
@@ -77,6 +78,13 @@ Want a guided walkthrough? See [`docs/demo-script.md`](./docs/demo-script.md) fo
 - Admin dashboard with daily throughput, tier split, yield breakdown and cocopeat blocks
 - Batch weigh-in and distribution dispatch logs
 - Session-aware; sign out when done
+
+### For consumers & the public
+- **Marketplace**: shop products made from diverted coconut waste — planter pots, coir doormats, cocopeat blocks and more (demo checkout, no real payment)
+- **Vending machines**: a map + list of 24×7 machines that pay ₹/kg for shells, pith and fibre the moment you drop them; a live deposit-earnings calculator
+- **Orders**: status timeline from placed → delivered, with the kg diverted per order
+- **Create an account**: sign up as Generator, Collector or Consumer with any mobile + OTP `420420`
+- Role-gated homes — each role only ever sees its own workspace
 
 ---
 
@@ -121,6 +129,7 @@ Until then, everything runs in mock mode on purpose — identical experience, no
 
 ## Status
 
-- All four roles' core flows: **shipped and verified** (tsc / lint / build / smoke).
+- All five roles' core flows: **shipped and verified** (tsc / lint / build / smoke).
+- v2 shipped: interactive landing page (impact counters, how-it-works, women-led making, product showcase, deposit calculator), the Consumer role (marketplace + vending machines + create-account + role gating).
 - Extras shipped: scheduling + slot reminders, payments & UPI (sandbox), live tracking & notifications.
 - Real backend, real OTP and real UPI: intentionally unplugged until you supply credentials.

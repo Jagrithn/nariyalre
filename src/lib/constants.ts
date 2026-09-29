@@ -7,6 +7,7 @@ export const PAYOUT_MIN = 50
 export const DEFAULT_DEPOT_COORDS = { lat: 13.0508, lng: 80.2412 }
 export const CURRENT_GENERATOR_ID = "u_gen_1"
 export const CURRENT_COLLECTOR_ID = "u_col_1"
+export const CURRENT_CONSUMER_ID = "u_cons_1"
 
 export const SLOTS: {
   id: PickupSlot
