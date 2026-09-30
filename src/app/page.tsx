@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { AboutUs } from "@/components/features/landing/about-us"
 import { DepositTeaser } from "@/components/features/landing/deposit-teaser"
 import { HowItWorks } from "@/components/features/landing/how-it-works"
 import { ImpactCounters } from "@/components/features/landing/impact-counters"
@@ -14,6 +15,7 @@ export default function Home() {
       <LandingHero />
       <ImpactCounters />
       <HowItWorks />
+      <AboutUs />
       <WomenSection />
       <LandingProducts />
       <DepositTeaser />
@@ -25,6 +27,9 @@ export default function Home() {
             Coco · circular coconut waste logistics
           </p>
           <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs">
+            <Link href="#about-us" className="text-muted-foreground hover:text-foreground hover:underline">
+              About Coco
+            </Link>
             <Link href="/login" className="font-medium text-emerald-700 hover:underline dark:text-emerald-300">
               Sign in
             </Link>
