@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { Banknote, Loader2, Wallet } from "lucide-react"
 
@@ -13,6 +14,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { useCollectorPickups } from "@/hooks/use-collector"
 import { formatCurrency, formatDateTime } from "@/lib/formats"
 import { CURRENT_COLLECTOR_ID, PAYOUT_MIN, RATE_PER_KG } from "@/lib/constants"
+import { IMAGES } from "@/lib/imagery"
 import { useCollectorStore } from "@/lib/stores/collector"
 import { pickupWeight } from "@/lib/impact"
 import { notify } from "@/lib/notify"
@@ -130,6 +132,14 @@ export function EarningsView() {
       </div>
 
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-700 p-6 text-white shadow-lg">
+        <Image
+          src={IMAGES.collectorHero}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-950/85 via-emerald-900/70 to-teal-900/75" />
         <div className="pointer-events-none absolute -top-10 right-0 size-36 rounded-full bg-white/10 blur-2xl" />
         <p className="flex items-center gap-1.5 text-xs font-medium text-emerald-100 uppercase">
           <Wallet className="size-3.5" />

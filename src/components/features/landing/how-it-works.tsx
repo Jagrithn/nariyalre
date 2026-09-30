@@ -1,28 +1,31 @@
 "use client"
 
-import { Coins, Factory, HandCoins, Recycle, Sprout, Truck } from "lucide-react"
+import Image from "next/image"
+import { Recycle, Sprout } from "lucide-react"
+
+import { IMAGES } from "@/lib/imagery"
 
 const STEPS = [
   {
-    icon: HandCoins,
+    image: IMAGES.stepHandoff,
     step: "01",
     title: "Drop your waste",
     description: "Hand coconut shells, husk & pith to a collector or a nearby vending machine.",
   },
   {
-    icon: Truck,
+    image: IMAGES.stepTruck,
     step: "02",
     title: "We collect & weigh",
     description: "The Coco fleet picks up on schedule. You get QR-verified weight and instant UPI.",
   },
   {
-    icon: Factory,
+    image: IMAGES.stepPress,
     step: "03",
     title: "It becomes products",
     description: "Coir fibre, blocks, compost and crafted goods — made by rural women's SHGs.",
   },
   {
-    icon: Coins,
+    image: IMAGES.stepShop,
     step: "04",
     title: "You buy, earn & rebuild",
     description: "Shop the circular market while earners get paid per kg. The loop never ends.",
@@ -47,8 +50,8 @@ export function HowItWorks() {
               <span className="absolute top-4 right-5 text-3xl font-black text-emerald-600/10">
                 {s.step}
               </span>
-              <span className="inline-flex size-11 items-center justify-center rounded-2xl bg-emerald-600/10 text-emerald-600">
-                <s.icon className="size-5" />
+              <span className="relative inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted">
+                <Image src={s.image} alt="Placed icon" fill sizes="44px" className="object-cover" />
               </span>
               <h3 className="mt-4 text-sm font-bold">{s.title}</h3>
               <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">

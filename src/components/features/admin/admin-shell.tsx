@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
@@ -11,6 +12,7 @@ import {
   TreePalm,
 } from "lucide-react"
 
+import { IMAGES } from "@/lib/imagery"
 import { signOutAction } from "@/actions/auth"
 import { useSessionStore } from "@/lib/stores/session"
 import { cn } from "@/lib/utils"
@@ -102,13 +104,24 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
         <div className="border-t px-4 py-4">
           <div className="flex items-center justify-between gap-2">
-            <div className="min-w-0">
-              <p className="truncate text-sm font-semibold">
-                {user?.fullName ?? "Ananya Iyer"}
-              </p>
-              <p className="truncate text-[11px] text-muted-foreground">
-                {user ? ROLE_LABEL[user.role] : "Admin · Ops head"}
-              </p>
+            <div className="flex min-w-0 items-center gap-2">
+              <span className="relative inline-flex size-9 shrink-0 overflow-hidden rounded-full bg-muted ring-1 ring-black/5">
+                <Image
+                  src={IMAGES.avatarAdmin}
+                  alt="User avatar"
+                  fill
+                  sizes="36px"
+                  className="object-cover"
+                />
+              </span>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold">
+                  {user?.fullName ?? "Ananya Iyer"}
+                </p>
+                <p className="truncate text-[11px] text-muted-foreground">
+                  {user ? ROLE_LABEL[user.role] : "Admin · Ops head"}
+                </p>
+              </div>
             </div>
             <div className="flex shrink-0 items-center gap-2">
               <Link

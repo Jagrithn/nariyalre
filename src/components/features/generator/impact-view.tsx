@@ -1,10 +1,12 @@
 "use client"
 
+import Image from "next/image"
 import { CloudFog, Nut, Recycle, TreePalm, Trophy, Zap } from "lucide-react"
 
 import { useGeneratorPickups } from "@/hooks/use-pickups"
 import { formatKg } from "@/lib/formats"
 import { computeImpactStats } from "@/lib/impact"
+import { IMAGES } from "@/lib/imagery"
 import { useGeneratorStore } from "@/lib/stores/generator"
 import { cn } from "@/lib/utils"
 
@@ -58,6 +60,14 @@ export function ImpactView() {
       </div>
 
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-emerald-600 to-teal-700 p-6 text-white shadow-lg">
+        <Image
+          src={IMAGES.generatorHero}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-950/85 via-emerald-900/70 to-teal-900/75" />
         <div className="pointer-events-none absolute -top-12 -right-8 size-44 rounded-full bg-white/10 blur-2xl" />
         <p className="text-xs font-medium tracking-wide text-emerald-100 uppercase">
           Waste kept from landfill

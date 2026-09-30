@@ -1,11 +1,13 @@
 "use client"
 
-import { CheckCircle2, MapPin } from "lucide-react"
+import Image from "next/image"
+import { CheckCircle2 } from "lucide-react"
 
 import { PickupStatusBadge } from "@/components/features/generator/pickup-status-badge"
 import { useCollectorPickups } from "@/hooks/use-collector"
 import { formatCurrency, timeAgo } from "@/lib/formats"
 import { RATE_PER_KG } from "@/lib/constants"
+import { LOCATION_IMAGE } from "@/lib/imagery"
 import { useCollectorStore } from "@/lib/stores/collector"
 import { pickupWeight } from "@/lib/impact"
 import type { Pickup } from "@/lib/types"
@@ -96,8 +98,14 @@ function JobRow({
 }) {
   return (
     <div className="flex items-center gap-3 rounded-2xl border bg-card p-3.5 shadow-sm">
-      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted text-muted-foreground">
-        <MapPin className="size-4.5" />
+      <span className="relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted">
+        <Image
+          src={LOCATION_IMAGE[pickup.location_type ?? "vendor"]}
+          alt=""
+          fill
+          sizes="40px"
+          className="object-cover"
+        />
       </span>
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-2">

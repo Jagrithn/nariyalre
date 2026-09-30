@@ -1,7 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import { HeartHandshake, Leaf, Users } from "lucide-react"
 
+import { IMAGES } from "@/lib/imagery"
 import { LANDING_STATS } from "@/lib/landingStats"
 
 const WINS = [
@@ -59,8 +61,14 @@ export function WomenSection() {
         </div>
 
         <div className="relative mx-auto w-full max-w-sm">
-          <div className="flex aspect-square items-center justify-center rounded-[2.5rem] bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 shadow-2xl shadow-amber-900/30">
-            <Leaf className="size-40 text-amber-50/90" strokeWidth={1.25} />
+          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] shadow-2xl shadow-amber-900/30">
+            <Image
+              src={IMAGES.shgCraft}
+              alt="Rural women spinning and crafting coir — the hands behind every Coco product"
+              fill
+              sizes="(min-width: 1024px) 24rem, 80vw"
+              className="object-cover"
+            />
           </div>
           <div className="absolute -bottom-3 left-1/2 w-max -translate-x-1/2 rounded-2xl border bg-card px-4 py-2 text-center shadow-lg">
             <p className="text-xl font-extrabold text-emerald-600">

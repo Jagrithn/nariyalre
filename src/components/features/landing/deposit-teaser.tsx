@@ -1,9 +1,11 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import Link from "next/link"
 import { Banknote, MapPin } from "lucide-react"
 
+import { IMAGES } from "@/lib/imagery"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import {
@@ -18,8 +20,16 @@ export function DepositTeaser() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-14">
-      <div className="overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-900 p-8 text-white shadow-xl sm:p-12">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-900 p-8 text-white shadow-xl sm:p-12">
+        <Image
+          src={IMAGES.deposit}
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-emerald-950/70" />
+        <div className="relative grid items-center gap-8 lg:grid-cols-2">
           <div>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">
               <Banknote className="size-3.5" />

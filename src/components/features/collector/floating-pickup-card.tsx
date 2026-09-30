@@ -1,15 +1,17 @@
-import { Landmark, MapPin, Nut, Store, Timer, ShoppingBasket } from "lucide-react"
+import Image from "next/image"
+import { MapPin, Nut, Timer } from "lucide-react"
 
 import { SwipeToAccept } from "@/components/features/collector/swipe-to-accept"
 import { Badge } from "@/components/ui/badge"
 import { formatDistanceKm } from "@/lib/geo"
 import { SHELLS_PER_KG, slotMeta } from "@/lib/constants"
+import { LOCATION_IMAGE } from "@/lib/imagery"
 import type { LocationType, Pickup } from "@/lib/types"
 
-const TYPE_META: Record<LocationType, { label: string; icon: typeof Landmark }> = {
-  temple: { label: "Temple", icon: Landmark },
-  vendor: { label: "Vendor", icon: Store },
-  market: { label: "Market", icon: ShoppingBasket },
+const TYPE_META: Record<LocationType, { label: string }> = {
+  temple: { label: "Temple" },
+  vendor: { label: "Vendor" },
+  market: { label: "Market" },
 }
 
 export function FloatingPickupCard({
@@ -31,8 +33,14 @@ export function FloatingPickupCard({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <span className="inline-flex size-8 items-center justify-center rounded-lg bg-emerald-600/10 text-emerald-700 dark:text-emerald-300">
-              <type.icon className="size-4" />
+            <span className="relative inline-flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-muted">
+              <Image
+                src={LOCATION_IMAGE[pickup.location_type ?? "vendor"]}
+                alt=""
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
             </span>
             <p className="text-sm font-semibold">{type.label} pickup</p>
           </div>

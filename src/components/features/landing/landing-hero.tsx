@@ -1,8 +1,10 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, BadgeCheck, MapPin, ShoppingBag, Sparkles, TreePalm } from "lucide-react"
 
+import { IMAGES } from "@/lib/imagery"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
@@ -63,8 +65,14 @@ export function LandingHero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-sm">
-          <div className="flex aspect-square items-center justify-center rounded-[2.5rem] bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-900 shadow-2xl shadow-emerald-900/30">
-            <TreePalm className="size-40 text-emerald-100/90" strokeWidth={1.25} />
+          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] shadow-2xl shadow-emerald-900/30">
+            <Image
+              src={IMAGES.grove}
+              alt="A coconut palm grove — the source of everything Coco recycles"
+              fill
+              sizes="(min-width: 1024px) 24rem, 80vw"
+              className="object-cover"
+            />
           </div>
 
           <div className="absolute -top-3 -right-3 rounded-2xl border bg-card px-3 py-2 shadow-lg">

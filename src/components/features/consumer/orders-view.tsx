@@ -2,8 +2,9 @@
 
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { CheckCircle2, PackageOpen, ShoppingBag } from "lucide-react"
+import { CheckCircle2, ShoppingBag } from "lucide-react"
 
+import { IMAGES } from "@/lib/imagery"
 import { Badge, type BadgeProps } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { formatCurrency, timeAgo } from "@/lib/formats"
@@ -33,8 +34,8 @@ export function OrdersView() {
   if (orders.length === 0) {
     return (
       <div className="flex flex-col items-center pt-24 text-center">
-        <span className="inline-flex size-16 items-center justify-center rounded-3xl bg-emerald-600/10 text-emerald-700">
-          <PackageOpen className="size-8" />
+        <span className="relative inline-flex size-16 items-center justify-center overflow-hidden rounded-3xl bg-muted shadow-sm">
+          <Image src={IMAGES.emptyBasket} alt="" fill sizes="64px" className="object-cover" />
         </span>
         <h1 className="mt-4 text-xl font-bold tracking-tight">No orders yet</h1>
         <p className="mt-1 max-w-[240px] text-xs text-muted-foreground">

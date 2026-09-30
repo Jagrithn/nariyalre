@@ -1,8 +1,9 @@
-import { MapPin } from "lucide-react"
+import Image from "next/image"
 
 import { PickupStatusBadge } from "@/components/features/generator/pickup-status-badge"
 import { formatKg, timeAgo } from "@/lib/formats"
 import { slotMeta } from "@/lib/constants"
+import { LOCATION_IMAGE } from "@/lib/imagery"
 import type { Pickup } from "@/lib/types"
 
 export function PickupRow({
@@ -25,11 +26,17 @@ export function PickupRow({
       <span
         className={
           highlight
-            ? "inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm"
-            : "inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted text-muted-foreground"
+            ? "relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted ring-2 ring-emerald-600 shadow-sm"
+            : "relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-muted"
         }
       >
-        <MapPin className="size-4.5" />
+        <Image
+          src={LOCATION_IMAGE[pickup.location_type ?? "vendor"]}
+          alt=""
+          fill
+          sizes="40px"
+          className="object-cover"
+        />
       </span>
       <div className="min-w-0 flex-1">
         <div className="flex items-center justify-between gap-2">

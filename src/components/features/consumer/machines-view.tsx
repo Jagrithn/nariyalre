@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import {
   Banknote,
@@ -7,7 +8,6 @@ import {
   Map as MapIcon,
   List,
   LocateFixed,
-  Recycle,
 } from "lucide-react"
 
 import { MachinesMap } from "@/components/features/consumer/machines-map"
@@ -17,6 +17,7 @@ import { Slider } from "@/components/ui/slider"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useVendingMachines } from "@/hooks/use-market"
 import { useGeolocation } from "@/hooks/use-geolocation"
+import { MACHINE_IMAGES } from "@/lib/imagery"
 import {
   DEFAULT_MACHINE_PAYOUT_PER_KG,
   depositEstimate,
@@ -27,8 +28,6 @@ import {
 import { formatDistanceKm } from "@/lib/geo"
 import { formatCurrency } from "@/lib/formats"
 import { cn } from "@/lib/utils"
-
-const MACHINE_COLORS = ["bg-amber-500", "bg-slate-800", "bg-emerald-600", "bg-sky-600"] as const
 
 export function MachinesView() {
   const [tab, setTab] = useState<"list" | "map">("list")
@@ -123,13 +122,14 @@ export function MachinesView() {
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-3">
-                    <span
-                      className={cn(
-                        "inline-flex size-10 shrink-0 items-center justify-center rounded-2xl text-white",
-                        MACHINE_COLORS[i % MACHINE_COLORS.length]
-                      )}
-                    >
-                      <Recycle className="size-5" />
+                    <span className="relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted ring-1 ring-black/5">
+                      <Image
+                        src={MACHINE_IMAGES[i % MACHINE_IMAGES.length]}
+                        alt={m.name}
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
                     </span>
                     <div>
                       <p className="flex items-center gap-1.5 text-sm font-semibold leading-tight">

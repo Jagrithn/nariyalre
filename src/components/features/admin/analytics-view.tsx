@@ -20,6 +20,7 @@ import { mockDepotInventory, mockDistributionLogs } from "@/lib/mockData"
 import { cocopeatBlocks, dailyThroughput, tierDispatched, tierTotals, yieldBreakdown } from "@/lib/analytics"
 import { formatDateTime, formatKg } from "@/lib/formats"
 import { MATERIAL_META, TIER_META } from "@/lib/tiers"
+import { METRIC_IMAGES } from "@/lib/imagery"
 import { useAdminStore } from "@/lib/stores/admin"
 
 export function AnalyticsView() {
@@ -51,7 +52,7 @@ export function AnalyticsView() {
     <div className="space-y-5">
       <div className="grid gap-4 md:grid-cols-3">
         <MetricCard
-          icon={Factory}
+          image={METRIC_IMAGES.tier1} icon={Factory}
           accent="bg-emerald-600/10 text-emerald-700 dark:text-emerald-300"
           title="Tier 1 · Industrial sales"
           value={formatKg(totals.tier1Kg)}
@@ -59,7 +60,7 @@ export function AnalyticsView() {
           trend="+12%"
         />
         <MetricCard
-          icon={HandCoins}
+          image={METRIC_IMAGES.tier2} icon={HandCoins}
           accent="bg-lime-600/10 text-lime-700 dark:text-lime-300"
           title="Tier 2 · SHG allocations"
           value={formatKg(totals.tier2Kg)}
@@ -67,7 +68,7 @@ export function AnalyticsView() {
           trend="3 groups"
         />
         <MetricCard
-          icon={PackagePlus}
+          image={METRIC_IMAGES.tier3} icon={PackagePlus}
           accent="bg-amber-600/10 text-amber-700 dark:text-amber-300"
           title="Tier 3 · In-house production"
           value={formatKg(totals.tier3Kg)}

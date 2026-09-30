@@ -1,3 +1,4 @@
+import Image from "next/image"
 import type { LucideIcon } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,6 +11,7 @@ type MetricCardProps = {
   value: string
   sub: string
   trend?: string
+  image?: string
 }
 
 export function MetricCard({
@@ -19,13 +21,18 @@ export function MetricCard({
   value,
   sub,
   trend,
+  image,
 }: MetricCardProps) {
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between">
         <CardTitle className="text-sm font-semibold">{title}</CardTitle>
-        <span className={cn("inline-flex size-9 items-center justify-center rounded-xl", accent)}>
-          <Icon className="size-4.5" />
+        <span className={cn("relative inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-xl", accent)}>
+          {image ? (
+            <Image src={image} alt="" fill sizes="36px" className="object-cover" />
+          ) : (
+            <Icon className="size-4.5" />
+          )}
         </span>
       </CardHeader>
       <CardContent className="pt-0">

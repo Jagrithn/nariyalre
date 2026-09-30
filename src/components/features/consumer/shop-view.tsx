@@ -1,12 +1,14 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
-import { Recycle, ShoppingCart } from "lucide-react"
+import { ShoppingCart } from "lucide-react"
 
 import { CartSheet } from "@/components/features/consumer/cart-sheet"
 import { ProductCard } from "@/components/features/consumer/product-card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useMarketProducts } from "@/hooks/use-market"
+import { IMAGES } from "@/lib/imagery"
 import { useConsumerStore } from "@/lib/stores/consumer"
 
 export function ShopView() {
@@ -30,8 +32,14 @@ export function ShopView() {
         </p>
       </div>
 
-      <div className="flex items-center gap-2 rounded-2xl border bg-emerald-600/10 px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
-        <Recycle className="size-4 shrink-0" />
+      <div className="flex items-center gap-2.5 rounded-2xl border bg-emerald-600/10 px-3 py-2.5 text-emerald-800 dark:text-emerald-200">
+        <Image
+          src={IMAGES.deposit}
+          alt=""
+          width={40}
+          height={40}
+          className="size-10 shrink-0 rounded-xl object-cover"
+        />
         <p className="text-[11px] leading-snug">
           Your basket currently diverts{" "}
           <span className="font-bold">{kgInCart.toFixed(1)} kg</span> of coconut
