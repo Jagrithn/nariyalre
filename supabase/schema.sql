@@ -221,7 +221,8 @@ create table if not exists public.products (
   made_by text not null default '',
   stock integer not null default 10 check (stock >= 0),
   recycler_kg numeric(6, 2) not null default 1 check (recycler_kg >= 0),
-  accent text not null default 'emerald' check (accent in ('emerald', 'teal', 'amber', 'lime'))
+  accent text not null default 'emerald' check (accent in ('emerald', 'teal', 'amber', 'lime')),
+  image text not null default ''
 );
 
 create table if not exists public.vending_machines (

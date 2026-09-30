@@ -1,6 +1,7 @@
 "use client"
 
-import { Leaf, Plus } from "lucide-react"
+import Image from "next/image"
+import { Plus } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -29,11 +30,17 @@ export function ProductCard({
     <div className="flex flex-col overflow-hidden rounded-3xl border bg-card shadow-sm transition-all hover:shadow-md">
       <div
         className={cn(
-          "relative flex aspect-[4/3] items-center justify-center bg-gradient-to-br",
+          "relative aspect-[4/3] overflow-hidden bg-gradient-to-br",
           ACCENTS[product.accent]
         )}
       >
-        <Leaf className="size-10 text-white/95" strokeWidth={1.5} />
+        <Image
+          src={product.image}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 50vw, 25vw"
+          className="object-cover"
+        />
         <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 px-2 py-0.5 text-[9px] font-bold text-emerald-700 shadow-sm">
           {product.material_type.replace("_", " ")}
         </span>

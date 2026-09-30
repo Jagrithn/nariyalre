@@ -1,11 +1,13 @@
 "use client"
 
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { CheckCircle2, PackageOpen, ShoppingBag } from "lucide-react"
 
 import { Badge, type BadgeProps } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { formatCurrency, timeAgo } from "@/lib/formats"
+import { productById } from "@/lib/marketplace"
 import { useConsumerStore } from "@/lib/stores/consumer"
 import type { OrderStatus } from "@/lib/types"
 import { cn } from "@/lib/utils"
@@ -118,8 +120,15 @@ export function OrdersView() {
 
             <div className="mt-3 space-y-1 rounded-2xl bg-muted/60 p-3">
               {o.items.map((it) => (
-                <div key={it.productId} className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">
+                <div key={it.productId} className="flex items-center justify-between gap-3 text-xs">
+                  <span className="flex items-center gap-2 text-muted-foreground">
+                    <Image
+                      src={productById(it.productId)?.image ?? ""}
+                      alt={it.name}
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 rounded-lg object-cover bg-gradient-to-br from-emerald-500 to-teal-600"
+                    />
                     {it.qty} × {it.name}
                   </span>
                   <span className="font-semibold">{formatCurrency(it.qty * it.price)}</span>

@@ -42,3 +42,6 @@ next-env.d.ts
 
 # regenerable deck screenshots
 .deck/
+
+# MS Office lock files
+~$*

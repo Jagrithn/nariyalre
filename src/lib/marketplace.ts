@@ -13,6 +13,7 @@ export const PRODUCTS: Product[] = [
     stock: 240,
     recycler_kg: 5,
     accent: "emerald",
+    image: "/products/cocopeat-block.jpg",
   },
   {
     id: "prod_planter",
@@ -26,6 +27,7 @@ export const PRODUCTS: Product[] = [
     stock: 520,
     recycler_kg: 0.4,
     accent: "teal",
+    image: "/products/coir-planter.webp",
   },
   {
     id: "prod_briquette",
@@ -39,6 +41,7 @@ export const PRODUCTS: Product[] = [
     stock: 180,
     recycler_kg: 2,
     accent: "amber",
+    image: "/products/briquettes.jpg",
   },
   {
     id: "prod_compost",
@@ -52,6 +55,7 @@ export const PRODUCTS: Product[] = [
     stock: 310,
     recycler_kg: 5,
     accent: "lime",
+    image: "/products/coir-compost.jpg",
   },
   {
     id: "prod_doormat",
@@ -65,6 +69,7 @@ export const PRODUCTS: Product[] = [
     stock: 95,
     recycler_kg: 1.2,
     accent: "teal",
+    image: "/products/coir-doormat.webp",
   },
   {
     id: "prod_soapdish",
@@ -78,6 +83,7 @@ export const PRODUCTS: Product[] = [
     stock: 400,
     recycler_kg: 0.2,
     accent: "amber",
+    image: "/products/soap-dish.jpg",
   },
 ]
 

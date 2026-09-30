@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Loader2, MapPinCheck, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react"
 
 import {
@@ -122,7 +123,13 @@ export function CartSheet({
               key={item.productId}
               className="flex items-center gap-3 rounded-2xl border bg-card p-3"
             >
-              <span className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600" />
+              <Image
+              src={product!.image}
+              alt={product!.name}
+              width={40}
+              height={40}
+              className="h-10 w-10 shrink-0 rounded-xl object-cover bg-gradient-to-br from-emerald-500 to-teal-600"
+            />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs font-semibold">{product!.name}</p>
                 <p className="text-[10px] text-muted-foreground">

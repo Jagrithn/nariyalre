@@ -40,13 +40,13 @@ insert into public.distribution_logs (id, tier, material_type, quantity_kg, dest
   ('00000000-0000-4000-8000-000000000306', 'tier3_inhouse', 'compost', 260, 'Coco Bhoomi Block Camp', now() - interval '8 hours')
 on conflict (id) do nothing;
 
-insert into public.products (id, name, material_type, price, unit, description, made_by, stock, recycler_kg, accent) values
-  ('p_planters', 'Hanging planter', 'pith', 299, 'fits Ø 12cm', 'Lightweight cocopeat planter for balconies and kitchens.', 'Green Hands SHG', 24, 0.9, 'emerald'),
-  ('p_coir_mat', 'Coir doormat', 'fiber', 499, '50 × 70 cm', 'Dust-trapping natural coir mat spun by rural women.', 'Green Hands SHG', 12, 1.4, 'amber'),
-  ('p_coco_blooms', 'Coco Bloom block', 'cocopeat', 349, '650 g', 'Expands into 5 L of potting mix. Compressed husk pith.', 'Coco Process Unit', 40, 1.1, 'lime'),
-  ('p_shell_soap', 'Activated-shell soap bar', 'shells', 149, '100 g', 'Calendula soap with activated coconut shell charcoal.', 'Kadal Crafts', 60, 0.3, 'teal'),
-  ('p_rope_20m', 'Coir rope 20 m', 'fiber', 249, '8 mm dia', 'Hand-twisted coir rope for gardens and homes.', 'Kalpana SHG', 30, 1.8, 'amber'),
-  ('p_board_box', 'Fibre board storage box', 'fiber', 799, '30 L', 'Rigid coir-fibre board box, cork-lid style.', 'Palm Studio', 8, 2.6, 'emerald')
+insert into public.products (id, name, material_type, price, unit, description, made_by, stock, recycler_kg, accent, image) values
+  ('prod_cpb', 'Cocopeat garden block', 'cocopeat', 185, '5 kg block', 'Pre-washed, low-EC cocopeat. Soaks in minutes — the base for every healthy pot.', 'Coco SHG · Kotturpuram', 240, 5, 'emerald', '/products/cocopeat-block.jpg'),
+  ('prod_planter', 'Coir planter pot', 'fiber', 95, '1 piece', 'Biodegradable coir pot that plants grow straight through. No plastic nursery pots.', 'Mangalam Workers Co-op', 520, 0.4, 'teal', '/products/coir-planter.webp'),
+  ('prod_briquette', 'Shell charcoal briquettes', 'shells', 240, '2 kg pack', 'Coconut-shell charcoal. High heat, low smoke — a coal alternative for tandoors.', 'Coco Processing Unit', 180, 2, 'amber', '/products/briquettes.jpg'),
+  ('prod_compost', 'Coir compost bag', 'compost', 120, '5 kg bag', 'Aged coir-pith compost that feeds the soil, not the landfill. Ready to mulch.', 'Bhoomi Block Camp', 310, 5, 'lime', '/products/coir-compost.jpg'),
+  ('prod_doormat', 'Coir doormat', 'fiber', 350, '1 piece', 'Hand-loomed natural coir. Tough on dirt, gentle on the planet.', 'Mangalam Workers Co-op', 95, 1.2, 'teal', '/products/coir-doormat.webp'),
+  ('prod_soapdish', 'Shell soap dish', 'shells', 60, '1 piece', 'A polished half-shell that drains naturally — a tiny craft with a big story.', 'Coco Women''s Collective', 400, 0.2, 'amber', '/products/soap-dish.jpg')
 on conflict (id) do nothing;
 
 insert into public.vending_machines (id, name, address, lat, lng, fill_level, payout_per_kg, accepts) values

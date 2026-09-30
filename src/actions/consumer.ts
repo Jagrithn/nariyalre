@@ -21,7 +21,7 @@ export async function getProductsAction(): Promise<{
   const supabase = await createClient()
   const { data, error } = await supabase
     .from("products")
-    .select("id, name, material_type, price, unit, description, made_by, stock, recycler_kg, accent")
+    .select("id, name, material_type, price, unit, description, made_by, stock, recycler_kg, accent, image")
     .order("price", { ascending: true })
   if (error) return { ok: false, products: [], error: error.message }
   return { ok: true, products: data as Product[] }

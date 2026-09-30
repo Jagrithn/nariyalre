@@ -1,7 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Leaf } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { formatCurrency } from "@/lib/formats"
@@ -45,11 +46,17 @@ export function LandingProducts() {
             >
               <div
                 className={cn(
-                  "flex aspect-[4/3] items-center justify-center bg-gradient-to-br",
+                  "relative aspect-[4/3] overflow-hidden bg-gradient-to-br",
                   ACCENTS[i % ACCENTS.length]
                 )}
               >
-                <Leaf className="size-12 text-white/95" strokeWidth={1.5} />
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
               <div className="flex items-center justify-between p-4">
                 <div>

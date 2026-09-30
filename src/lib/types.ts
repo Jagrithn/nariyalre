@@ -121,6 +121,7 @@ export interface Product {
   stock: number
   recycler_kg: number
   accent: ProductAccent
+  image: string
 }
 
 export interface CartItem {
